@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Picker } from "react-native";
+import { View, StyleSheet, Picker, Text } from "react-native";
 import { Button, InputRow, Label } from "../../components";
 
 class VesselSearchScreen extends Component {
@@ -23,11 +23,11 @@ class VesselSearchScreen extends Component {
                         mode="dropdown"
                         onValueChange={(terminal) => this.setState({terminal})}
                     >
-                        <Picker.Item label="Pilih Terminal" value="Pilih Terminal" />
+                        <Picker.Item label="Pilih Terminal" value={null} />
                         <Picker.Item label="Terminal Seluruh Indonesia" value="Terminal Seluruh Indonesia" />
                     </Picker>
                 </InputRow>
-                <Button onPress={() => this.props.navigation.navigate('VesselListResult', {terminal: this.state.ter})} />
+                <Button onPress={() => {if (this.state.terminal) this.props.navigation.navigate('VesselListResult', {terminal: this.state.terminal})}} />
             </View>
         );
     }
