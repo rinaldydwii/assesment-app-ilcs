@@ -3,5 +3,6 @@ export default colors = {
     greyTwo: "#828282",
     greyOne: "#bdbdbd",
     white: "#ffffff",
-    blackOverlay: "rgba(0, 0, 0, 0.4)"
+    blackOverlay: "rgba(0, 0, 0, 0.4)",
+    red: "#e74c3c"
 }
