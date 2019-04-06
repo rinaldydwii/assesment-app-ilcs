@@ -2,8 +2,8 @@ import React from "react";
 import { View } from "react-native";
 import styles from "./styles";
 
-const InputRow = ({children}) => (
-    <View style={styles.inputRowContainer}>
+const InputRow = ({children, direction = null}) => (
+    <View style={[styles.inputRowContainer, direction === 'row' ? styles.inputRowDirection : null]}>
         {children}
     </View>
 )
