@@ -105,6 +105,12 @@ const styles = StyleSheet.create({
     textInput: {
         flex: 1
     },
+    // VALIDATION TEXT
+    validationText: {
+        ...fonts.openSans,
+        color: colors.red,
+        marginTop: 15
+    }
 });
 
 export default styles
