@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         width: "100%"
     },
     menuItemContainer: {
-        borderColor: "#bdbdbd",
+        borderColor: colors.greyOne,
         borderWidth: 1,
         borderRadius: 8,
         alignItems: 'center',
@@ -30,6 +30,30 @@ const styles = StyleSheet.create({
         color: colors.black,
         ...fonts.openSans,
         marginTop: 5
+    },
+    // BUTTON
+    buttonContainer: {
+        paddingHorizontal: 15,
+        paddingVertical: 6,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: colors.greyOne,
+        borderRadius: 40,
+    },
+    buttonText: {
+        color: colors.black,
+        ...fonts.openSans
+    },
+    // INPUT ROW
+    inputRowContainer: {
+        marginBottom: 15,
+        width: "100%"
+    },
+    // LABEL
+    labelText: {
+        ...fonts.openSans,
+        color: colors.black,
     }
 });
 
