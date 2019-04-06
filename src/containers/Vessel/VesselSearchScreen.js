@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Picker, Text } from "react-native";
-import { Button, InputRow, Label } from "../../components";
+import { View, StyleSheet, Picker } from "react-native";
+import { Button, InputRow, Label, ValidationText } from "../../components";
 import { SearchSVG } from "../../assets";
 
 class VesselSearchScreen extends Component {
@@ -10,8 +10,20 @@ class VesselSearchScreen extends Component {
     constructor() {
         super();
         this.state = {
-            terminal: null
+            terminal: null,
+            error: ""
         }
+    }
+    handleSubmit = () => {
+        if (this.state.terminal) 
+            this.props.navigation.navigate('VesselListResult', {terminal: this.state.terminal}) 
+        else this.setState({error: "Terminal harus dipilih"})
+    }
+    handlePickerChange = (terminal) => {
+        let error = ""
+        if (terminal === null)
+            error = "Terminal harus dipilih"
+        this.setState({terminal, error})
     }
     render() {
         return (
@@ -22,7 +34,7 @@ class VesselSearchScreen extends Component {
                         style={styles.pickerContainer}
                         selectedValue={this.state.terminal}
                         mode="dropdown"
-                        onValueChange={(terminal) => this.setState({terminal})}
+                        onValueChange={this.handlePickerChange}
                     >
                         <Picker.Item label="Pilih Terminal" value={null} />
                         <Picker.Item label="Terminal Seluruh Indonesia" value="Terminal Seluruh Indonesia" />
@@ -31,8 +43,9 @@ class VesselSearchScreen extends Component {
                 <Button 
                     icon={(size) => <SearchSVG width={size} height ={size} />}
                     title="Search" 
-                    onPress={() => {if (this.state.terminal) this.props.navigation.navigate('VesselListResult', {terminal: this.state.terminal})}} 
+                    onPress={this.handleSubmit} 
                 />
+                <ValidationText text={this.state.error} />
             </View>
         );
     }
