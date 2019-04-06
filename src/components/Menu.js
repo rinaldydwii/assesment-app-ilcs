@@ -15,22 +15,22 @@ const MENU_LIST = [
     {
         name: "Truck",
         icon: (size) => <TruckSVG width={size} height={size} />,
-        path: null
+        path: ""
     },
     {
         name: "Container",
         icon: (size) => <ContainerSVG width={size} height={size} />,
-        path: null
+        path: ""
     },
     {
         name: "Tariff Simulation",
         icon: (size) => <TariffSimulationSVG width={size} height={size} />,
-        path: null
+        path: ""
     },
     {
         name: "Depo",
         icon: (size) => <DepoSVG width={size} height={size} />,
-        path: null
+        path: ""
     }
 ];
 

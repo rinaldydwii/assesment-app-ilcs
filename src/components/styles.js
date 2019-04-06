@@ -43,14 +43,15 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: colors.black,
-        ...fonts.openSans
+        ...fonts.openSans,
+        marginLeft: 10
     },
     // INPUT ROW
     inputRowContainer: {
         marginBottom: 15,
         width: "100%"
     },
-    inputRowDirection: {flexDirection: 'row', marginBottom: 5},
+    inputRowDirection: {flexDirection: 'row', marginBottom: 5, alignItems: 'center'},
     // LABEL
     labelText: {
         ...fonts.openSans,
