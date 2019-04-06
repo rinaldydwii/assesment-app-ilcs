@@ -50,10 +50,35 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         width: "100%"
     },
+    inputRowDirection: {flexDirection: 'row', marginBottom: 5},
     // LABEL
     labelText: {
         ...fonts.openSans,
         color: colors.black,
+    },
+    labelRowDirection: {
+        width: 100,
+    },
+    // VESSEL
+    vesselItemContainer: {
+        padding: 10,
+        borderColor: colors.greyOne,
+        borderWidth: 1,
+        borderRadius: 5,
+        flexDirection: 'row',
+        marginBottom: 10
+    },
+    vesselInfoContainer: {
+        flex: 1
+    },
+    vesselNameText: {
+        ...fonts.openSansSemiBold,
+        fontSize: 16,
+        color: colors.black
+    },
+    vesselDataText: {
+        ...fonts.openSansSemiBold,
+        color: colors.black
     }
 });
 
