@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Picker, Text } from "react-native";
 import { Button, InputRow, Label } from "../../components";
+import { SearchSVG } from "../../assets";
 
 class VesselSearchScreen extends Component {
     static navigationOptions = {
@@ -27,7 +28,11 @@ class VesselSearchScreen extends Component {
                         <Picker.Item label="Terminal Seluruh Indonesia" value="Terminal Seluruh Indonesia" />
                     </Picker>
                 </InputRow>
-                <Button onPress={() => {if (this.state.terminal) this.props.navigation.navigate('VesselListResult', {terminal: this.state.terminal})}} />
+                <Button 
+                    icon={(size) => <SearchSVG width={size} height ={size} />}
+                    title="Search" 
+                    onPress={() => {if (this.state.terminal) this.props.navigation.navigate('VesselListResult', {terminal: this.state.terminal})}} 
+                />
             </View>
         );
     }
