@@ -45,6 +45,17 @@ export function SearchSVG(props) {
     );
 }
 
+export function AddSVG(props) {
+    return (
+      <Svg height="400" width="400" fill="none" viewBox="0 0 400 400" {...props}>
+          <G clipPath="url(#clip0)">
+              <Path d="M361.618 212.5C368.522 212.5 374.118 206.904 374.118 200C374.118 193.096 368.522 187.5 361.618 187.5H212.5V38.3816C212.5 31.478 206.903 25.8816 200 25.8816C193.096 25.8816 187.5 31.478 187.5 38.3816V187.5H38.3816C31.478 187.5 25.8816 193.096 25.8816 200C25.8816 206.904 31.478 212.5 38.3816 212.5H187.5V361.618C187.5 368.522 193.096 374.118 200 374.118C206.903 374.118 212.5 368.522 212.5 361.618V212.5H361.618Z" fill="black" fillRule="evenodd"/>
+          </G>
+          <Defs/>
+      </Svg>
+    );
+  }
+
 export function CloseSVG(props) {
     return (
         <Svg height="400" width="400" fill="none" viewBox="0 0 400 400" {...props}>
