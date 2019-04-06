@@ -79,7 +79,31 @@ const styles = StyleSheet.create({
     vesselDataText: {
         ...fonts.openSansSemiBold,
         color: colors.black
-    }
+    },
+    // DATE PICKER
+    datePickerContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 3,
+        paddingVertical: 8
+    },
+    datePickerText: {
+        flex: 1,
+        padding: 5,
+        color: colors.black,
+        ...fonts.openSans,
+        borderBottomColor: colors.black,
+        borderBottomWidth: 1,
+        marginRight: 10
+    },
+    datePickerPlaceholderText: {
+        color: colors.greyTwo,
+    },
+    // TEXT INPUT
+    textInput: {
+        flex: 1
+    },
 });
 
 export default styles
