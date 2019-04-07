@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
         margin: 5
     },
     menuItemText: {
+        fontSize: 12,
         color: colors.black,
         ...fonts.openSans,
         marginTop: 5
