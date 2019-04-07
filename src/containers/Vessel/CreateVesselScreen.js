@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import colors from "../../styles/colors";
 import { CloseSVG, SaveSVG } from "../../assets";
-import { InputRow, Label, Button, TextInput, DatePicker } from "../../components";
+import { InputRow, Label, Button, TextInput, DatePicker, ValidationText } from "../../components";
 import fonts from "../../styles/fonts";
 
 class CreateVesselScreen extends Component {
@@ -18,9 +18,19 @@ class CreateVesselScreen extends Component {
 
         }
     }
-    
+    handleSubmit = () => {
+        const { vessel_name, eta, etb } = this.state
+        if (vessel_name && eta && etb) {
+            this.props.navigation.goBack()
+        } else {
+            if (!vessel_name) this.setState({error_vessel_name: "Nama vessel harus diisi"})
+            if (!eta) this.setState({error_eta: "ETA harus diisi"})
+            if (!etb) this.setState({error_etb: "ETB harus diisi"})
+        }
+    }
     render() {
         console.log(this.state)
+        const { error_vessel_name, error_eta, error_etb } = this.state
         return (
             <View style={styles.container}>
                 <View style={styles.contentContainer}>
@@ -37,9 +47,10 @@ class CreateVesselScreen extends Component {
                             <TextInput 
                                 placeholder="Enter Vessel Name"
                                 value={this.state.vessel_name}
-                                onChangeText={(vessel_name) => this.setState({vessel_name})}
+                                onChangeText={(vessel_name) => this.setState({vessel_name, error_vessel_name: ""})}
                             />
                         </InputRow>
+                        <ValidationText text={error_vessel_name} style={{marginTop:0, marginLeft: 110}} />
                         <InputRow direction="row">
                             <Label direction="row" label="Voyage In" />
                             <TextInput 
@@ -60,16 +71,18 @@ class CreateVesselScreen extends Component {
                             <Label direction="row" label="ETA" />
                             <DatePicker 
                                 value={this.state.eta}
-                                onValueChange={(eta) => this.setState({eta})}
+                                onValueChange={(eta) => this.setState({eta, error_eta: ""})}
                             />
                         </InputRow>
+                        <ValidationText text={error_eta} style={{marginTop:0, marginLeft: 110}} />
                         <InputRow direction="row">
                             <Label direction="row" label="ETB" />
                             <DatePicker 
                                 value={this.state.etb}
-                                onValueChange={(etb) => this.setState({etb})}
+                                onValueChange={(etb) => this.setState({etb, error_etb: ""})}
                             />
                         </InputRow>
+                        <ValidationText text={error_etb} style={{marginTop:0, marginLeft: 110}} />
                         <InputRow direction="row">
                             <Label direction="row" label="ETD" />
                             <DatePicker 
@@ -78,7 +91,11 @@ class CreateVesselScreen extends Component {
                             />
                         </InputRow>
                     </View>
-                    <Button icon={(size) => <SaveSVG width={size} height ={size} />} title="Save" />
+                    <Button 
+                        icon={(size) => <SaveSVG width={size} height ={size} />} 
+                        title="Save" 
+                        onPress={this.handleSubmit}
+                    />
                 </View>
             </View>
         );
@@ -99,6 +116,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 50,
         position: 'relative',
         width: "100%",
+        alignItems: 'center',
         backgroundColor: colors.white,
     },
     titleText: {
