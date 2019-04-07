@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { View, StyleSheet, Picker } from "react-native";
 import { Button, InputRow, Label, ValidationText } from "../../components";
 import { SearchSVG } from "../../assets";
+import { getTerminal } from "../../actions/terminalAction";
 
 class VesselSearchScreen extends Component {
     static navigationOptions = {
@@ -25,6 +27,9 @@ class VesselSearchScreen extends Component {
             error = "Terminal harus dipilih"
         this.setState({terminal, error})
     }
+    componentDidMount() {
+        this.props.getTerminal();
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -37,7 +42,9 @@ class VesselSearchScreen extends Component {
                         onValueChange={this.handlePickerChange}
                     >
                         <Picker.Item label="Pilih Terminal" value={null} />
-                        <Picker.Item label="Terminal Seluruh Indonesia" value="Terminal Seluruh Indonesia" />
+                        { this.props.terminals.map((item, index) => (
+                            <Picker.Item key={index} label={item.terminal} value={item.terminal} />
+                        ))}
                     </Picker>
                 </InputRow>
                 <Button 
@@ -50,7 +57,17 @@ class VesselSearchScreen extends Component {
         );
     }
 }
-export default VesselSearchScreen;
+
+const mapStateToProps = state => {
+    const { terminalReducer } = state
+    return terminalReducer
+}
+
+const mapDispatchToProps = dispatch => ({
+    getTerminal: () => dispatch(getTerminal())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(VesselSearchScreen);
 
 const styles = StyleSheet.create({
     container: {
