@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import colors from "../../styles/colors";
 import { CloseSVG, SaveSVG } from "../../assets";
 import { InputRow, Label, Button, TextInput, DatePicker, ValidationText } from "../../components";
 import fonts from "../../styles/fonts";
+import { createMVessel } from "../../actions/mVesselAction";
 
 class CreateVesselScreen extends Component {
     constructor() {
@@ -15,13 +17,24 @@ class CreateVesselScreen extends Component {
             eta: "",
             etb: "",
             etd: ""
-
         }
     }
     handleSubmit = () => {
         const { vessel_name, eta, etb } = this.state
         if (vessel_name && eta && etb) {
-            this.props.navigation.goBack()
+            const state = this.state
+            const m_vessel = {
+                vessel_name: state.vessel_name,
+                voyage_in: state.voyage_in,
+                voyage_out: state.voyage_out,
+                eta: state.eta,
+                etb: state.etb,
+                etd: state.etd,
+                terminal: this.props.navigation.state.params.terminal,
+                name: "Rinaldy Dwi Istanto"
+            }
+            this.props.createMVessel(m_vessel)
+            this.props.navigation.navigate('Modal', {title: "Berhasil menambahkan", onPress: () => this.props.navigation.goBack()})
         } else {
             if (!vessel_name) this.setState({error_vessel_name: "Nama vessel harus diisi"})
             if (!eta) this.setState({error_eta: "ETA harus diisi"})
@@ -29,7 +42,6 @@ class CreateVesselScreen extends Component {
         }
     }
     render() {
-        console.log(this.state)
         const { error_vessel_name, error_eta, error_etb } = this.state
         return (
             <View style={styles.container}>
@@ -101,7 +113,17 @@ class CreateVesselScreen extends Component {
         );
     }
 }
-export default CreateVesselScreen;
+
+const mapStateToProps = state => {
+    const { mVesselReducer } = state
+    return mVesselReducer
+}
+
+const mapDispatchToProps = dispatch => ({
+    createMVessel: (m_vessel) => dispatch(createMVessel(m_vessel))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateVesselScreen);
 
 const styles = StyleSheet.create({
     container: {
@@ -111,12 +133,12 @@ const styles = StyleSheet.create({
         backgroundColor: colors.blackOverlay
     },
     contentContainer: {
-        // flex: 1,
         paddingVertical: 40,
         paddingHorizontal: 50,
+        marginHorizontal: 20,
         position: 'relative',
-        width: "100%",
         alignItems: 'center',
+        borderRadius: 10,
         backgroundColor: colors.white,
     },
     titleText: {
