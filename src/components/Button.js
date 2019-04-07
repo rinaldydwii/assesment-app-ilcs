@@ -11,7 +11,7 @@ const Button = ({title, icon, onPress}) => (
         style={styles.buttonContainer}    
     >
         <React.Fragment>
-            {icon(30)}
+            {icon ? icon(30) : null}
             <Text style={styles.buttonText}>{title}</Text>
         </React.Fragment>
     </TouchableHighlight>
