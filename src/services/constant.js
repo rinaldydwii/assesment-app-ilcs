@@ -1,6 +1,6 @@
 const MAIN_API_URL = "http://192.168.1.66:8000/";
 
-const M_VESSEL_ROUTE = "m-vessel";
+const M_VESSEL_ROUTE = "m-vessels";
 const TERMINAL_ROUTE = "terminals";
 const NAME = "name"
 
