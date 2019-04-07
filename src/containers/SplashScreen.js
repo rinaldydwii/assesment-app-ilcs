@@ -12,7 +12,7 @@ class SplashScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Logo />
+                <Logo name="" />
             </View>
         );
     }
