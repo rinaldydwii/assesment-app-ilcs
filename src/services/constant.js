@@ -1,4 +1,5 @@
-const MAIN_API_URL = "http://192.168.1.66:8000/";
+// const MAIN_API_URL = "http://192.168.1.66:8000/"; // LOCAL
+const MAIN_API_URL = "https://api-dummy-ilcs.herokuapp.com/"; // LIVE 
 
 const M_VESSEL_ROUTE = "m-vessels";
 const TERMINAL_ROUTE = "terminals";
