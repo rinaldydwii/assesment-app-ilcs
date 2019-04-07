@@ -25,14 +25,16 @@ class CreateVesselScreen extends Component {
             const state = this.state
             const m_vessel = {
                 vessel_name: state.vessel_name,
-                voyage_in: state.voyage_in,
-                voyage_out: state.voyage_out,
                 eta: state.eta,
                 etb: state.etb,
-                etd: state.etd,
                 terminal: this.props.navigation.state.params.terminal,
                 name: "Rinaldy Dwi Istanto"
             }
+
+            if (state.voyage_in) m_vessel['voyage_in'] = state.voyage_in
+            if (state.voyage_out) m_vessel['voyage_out'] = state.voyage_out
+            if (state.etd) m_vessel['etd'] = state.etd
+
             this.props.createMVessel(m_vessel)
             this.props.navigation.navigate('Modal', {title: "Berhasil menambahkan", onPress: () => this.props.navigation.goBack()})
         } else {
