@@ -11,7 +11,7 @@ class VesselListResultScreen extends Component {
         title: navigation.state.params.terminal,
         headerRight: (
             <TouchableOpacity
-                onPress={() => navigation.navigate('CreateVessel')}
+                onPress={() => navigation.navigate('CreateVessel', {terminal: navigation.state.params.terminal})}
                 style={styles.addButtonContainer}
             >
                 <AddSVG width={24} height={24}  />
