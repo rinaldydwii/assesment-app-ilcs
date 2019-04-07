@@ -4,6 +4,7 @@ import InputRow from "./InputRow";
 import styles from "./styles";
 import Label from "./Label";
 import { VesselSVG } from "../assets";
+import dateFormat from "../helpers/dateFormat";
 
 const DATA = [
     {
@@ -11,36 +12,36 @@ const DATA = [
         vessel_name: "MV Meratus Manado",
         voyage_in: "VOY03",
         voyage_out: "VOY04",
-        eta: "2019-04-10 10:00",
-        etb: "2019-04-10 15:25",
-        etd: "2019-04-15 15:00",
+        eta: "2019-04-10T10:00+07:00",
+        etb: "2019-04-10T15:25+07:00",
+        etd: "2019-04-15T15:00+07:00",
     },
     {
         id: 2,
         vessel_name: "MV Meratus Manado",
         voyage_in: "VOY03",
         voyage_out: "VOY04",
-        eta: "2019-04-10 10:00",
-        etb: "2019-04-10 15:25",
-        etd: "2019-04-15 15:00",
+        eta: "2019-04-10T10:00",
+        etb: "2019-04-10T15:25",
+        etd: "2019-04-15T15:00",
     },
     {
         id: 3,
         vessel_name: "MV Meratus Manado",
         voyage_in: "VOY03",
         voyage_out: "VOY04",
-        eta: "2019-04-10 10:00",
-        etb: "2019-04-10 15:25",
-        etd: "2019-04-15 15:00",
+        eta: "2019-04-10T10:00",
+        etb: "2019-04-10T15:25",
+        etd: "2019-04-15T15:00",
     },
     {
         id: 4,
         vessel_name: "MV Meratus Manado",
         voyage_in: "VOY03",
         voyage_out: "VOY04",
-        eta: "2019-04-10 10:00",
-        etb: "2019-04-10 15:25",
-        etd: "2019-04-15 15:00",
+        eta: "2019-04-10T10:00",
+        etb: "2019-04-10T15:25",
+        etd: "2019-04-15T15:00",
     }
 ]
 
@@ -60,15 +61,15 @@ const VesselItem = ({vessel}) => (
             </InputRow>
             <InputRow direction="row">
                 <Label direction="row" label="ETA" />
-                <Text style={styles.vesselDataText}>{vessel.eta}</Text>
+                <Text style={styles.vesselDataText}>{dateFormat(vessel.eta, "d/m/Y H:i:s")}</Text>
             </InputRow>
             <InputRow direction="row">
                 <Label direction="row" label="ETB" />
-                <Text style={styles.vesselDataText}>{vessel.etb}</Text>
+                <Text style={styles.vesselDataText}>{dateFormat(vessel.etb, "d/m/Y H:i:s")}</Text>
             </InputRow>
             <InputRow direction="row">
                 <Label direction="row" label="ETD" />
-                <Text style={styles.vesselDataText}>{vessel.etd}</Text>
+                <Text style={styles.vesselDataText}>{dateFormat(vessel.etd, "d/m/Y H:i:s")}</Text>
             </InputRow>
         </View>
         <VesselSVG width={100} height={100} />
