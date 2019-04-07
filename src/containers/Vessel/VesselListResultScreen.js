@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, StyleSheet, TouchableOpacity, ActivityIndicator } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { VesselList } from "../../components";
 import { AddSVG } from "../../assets";
 import { getMVesselByTerminal } from "../../actions/mVesselAction";
-import colors from "../../styles/colors";
 
 class VesselListResultScreen extends Component {
     static navigationOptions = ({navigation}) => ({
@@ -32,9 +31,12 @@ class VesselListResultScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                { this.props.loading ? <ActivityIndicator color={colors.black} size={30} /> : 
-                    <VesselList mVessels={this.props.mVessels} />
-                }
+                    <VesselList 
+                        mVessels={this.props.mVessels} 
+                        state={this.props}
+                        onRefresh={() => this.props.getMVessel(this.props.navigation.state.params.terminal)}
+                        loading={this.props.loading}
+                    />
             </View>
         );
     }
@@ -58,5 +60,5 @@ const styles = StyleSheet.create({
     },
     addButtonContainer: {
         marginRight: 20,
-    }
+    },
 });

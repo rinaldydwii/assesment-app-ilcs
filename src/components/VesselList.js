@@ -14,11 +14,11 @@ const VesselItem = ({mVessel}) => (
             </InputRow>
             <InputRow direction="row">
                 <Label direction="row" label="Voyage In" />
-                <Text style={styles.vesselDataText}>{mVessel.voyage_in}</Text>
+                <Text style={styles.vesselDataText}>{mVessel.voyage_in ? mVessel.voyage_in : "-"}</Text>
             </InputRow>
             <InputRow direction="row">
                 <Label direction="row" label="Voyage Out" />
-                <Text style={styles.vesselDataText}>{mVessel.voyage_out}</Text>
+                <Text style={styles.vesselDataText}>{mVessel.voyage_out ? mVessel.voyage_out : "-"}</Text>
             </InputRow>
             <InputRow direction="row">
                 <Label direction="row" label="ETA" />
@@ -30,16 +30,19 @@ const VesselItem = ({mVessel}) => (
             </InputRow>
             <InputRow direction="row">
                 <Label direction="row" label="ETD" />
-                <Text style={styles.vesselDataText}>{dateFormat(mVessel.etd, "d/m/Y H:i:s")}</Text>
+                <Text style={styles.vesselDataText}>{mVessel.etd ? dateFormat(mVessel.etd, "d/m/Y H:i:s") : "-"}</Text>
             </InputRow>
         </View>
         <VesselSVG width={100} height={100} />
     </View>
 )
 
-const VesselList = ({mVessels}) => (
+const VesselList = ({mVessels, state, onRefresh, loading}) => (
     <FlatList 
         data={mVessels}
+        extraData={state}
+        onRefresh={onRefresh}
+        refreshing={loading}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={<View style={{height: 20}}></View>}
         ListFooterComponent={<View style={{height: 10}}></View>}
