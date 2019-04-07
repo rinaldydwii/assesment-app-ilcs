@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { connect } from "react-redux";
+import { View, StyleSheet, TouchableOpacity, ActivityIndicator } from "react-native";
 import { VesselList } from "../../components";
 import { AddSVG } from "../../assets";
+import { getMVesselByTerminal } from "../../actions/mVesselAction";
+import colors from "../../styles/colors";
 
 class VesselListResultScreen extends Component {
     static navigationOptions = ({navigation}) => ({
@@ -23,17 +26,30 @@ class VesselListResultScreen extends Component {
     }
     componentDidMount() {
         const terminal = this.props.navigation.state.params.terminal
+        this.props.getMVessel(terminal)
         this.setState({terminal})
     }
     render() {
         return (
             <View style={styles.container}>
-                <VesselList />
+                { this.props.loading ? <ActivityIndicator color={colors.black} size={30} /> : 
+                    <VesselList mVessels={this.props.mVessels} />
+                }
             </View>
         );
     }
 }
-export default VesselListResultScreen;
+
+const mapStateToProps = state => {
+    const { mVesselReducer } = state
+    return mVesselReducer
+}
+
+const mapDispatchToProps = dispatch => ({
+    getMVessel: (terminal) => dispatch(getMVesselByTerminal(terminal))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(VesselListResultScreen);
 
 const styles = StyleSheet.create({
     container: {
