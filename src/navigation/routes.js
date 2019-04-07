@@ -3,6 +3,7 @@ import HomeScreen from "../containers/HomeScreen";
 import VesselSearchScreen from "../containers/Vessel/VesselSearchScreen";
 import VesselListResultScreen from "../containers/Vessel/VesselListResultScreen";
 import CreateVesselScreen from "../containers/Vessel/CreateVesselScreen";
+import ModalScreen from "../containers/Modal/ModalScreen";
 
 export const AppRoutes = {
     Main: { screen: HomeScreen },
@@ -15,5 +16,6 @@ export const SwitchRoutes = {
 }
 
 export const ModalRoutes = {
-    CreateVessel: { screen: CreateVesselScreen }
+    CreateVessel: { screen: CreateVesselScreen },
+    Modal: { screen: ModalScreen }
 }
