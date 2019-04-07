@@ -1,29 +1,43 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { View, Text, StyleSheet } from "react-native";
 import { Logo, Menu } from "../components";
 import { UserSVG } from "../assets";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
+import { getName } from "../actions/nameAction";
 
-// TODO: GET NAME FROM API
 class HomeScreen extends Component {
     static navigationOptions = {
         header: null
     }
+    componentDidMount() {
+        this.props.getName();
+    }
     render() {
         return (
             <View style={styles.container}>
-                <Logo name={"Nama Saya"} />
+                <Logo name={this.props.name} />
                 <View style={styles.userContainer}>
                     <UserSVG width={30} height={30} />
-                    <Text style={styles.userNameText}>Welcome, Nama Saya</Text>
+                    <Text style={styles.userNameText}>{`Welcome, ${this.props.name}`}</Text>
                 </View>
                 <Menu />
             </View>
         );
     }
 }
-export default HomeScreen;
+
+const mapStateToProps = state => {
+    const { nameReducer } = state
+    return nameReducer
+}
+
+const mapDispatchToProps = dispatch => ({
+    getName: () => dispatch(getName())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
 
 const styles = StyleSheet.create({
     container: {
