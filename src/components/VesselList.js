@@ -6,84 +6,45 @@ import Label from "./Label";
 import { VesselSVG } from "../assets";
 import dateFormat from "../helpers/dateFormat";
 
-const DATA = [
-    {
-        id: 1,
-        vessel_name: "MV Meratus Manado",
-        voyage_in: "VOY03",
-        voyage_out: "VOY04",
-        eta: "2019-04-10T10:00+07:00",
-        etb: "2019-04-10T15:25+07:00",
-        etd: "2019-04-15T15:00+07:00",
-    },
-    {
-        id: 2,
-        vessel_name: "MV Meratus Manado",
-        voyage_in: "VOY03",
-        voyage_out: "VOY04",
-        eta: "2019-04-10T10:00",
-        etb: "2019-04-10T15:25",
-        etd: "2019-04-15T15:00",
-    },
-    {
-        id: 3,
-        vessel_name: "MV Meratus Manado",
-        voyage_in: "VOY03",
-        voyage_out: "VOY04",
-        eta: "2019-04-10T10:00",
-        etb: "2019-04-10T15:25",
-        etd: "2019-04-15T15:00",
-    },
-    {
-        id: 4,
-        vessel_name: "MV Meratus Manado",
-        voyage_in: "VOY03",
-        voyage_out: "VOY04",
-        eta: "2019-04-10T10:00",
-        etb: "2019-04-10T15:25",
-        etd: "2019-04-15T15:00",
-    }
-]
-
-const VesselItem = ({vessel}) => (
+const VesselItem = ({mVessel}) => (
     <View style={styles.vesselItemContainer}>
         <View style={styles.vesselInfoContainer}>
             <InputRow direction="row">
-                <Text style={styles.vesselNameText}>{vessel.vessel_name}</Text>
+                <Text style={styles.vesselNameText}>{mVessel.vessel_name}</Text>
             </InputRow>
             <InputRow direction="row">
                 <Label direction="row" label="Voyage In" />
-                <Text style={styles.vesselDataText}>{vessel.voyage_in}</Text>
+                <Text style={styles.vesselDataText}>{mVessel.voyage_in}</Text>
             </InputRow>
             <InputRow direction="row">
                 <Label direction="row" label="Voyage Out" />
-                <Text style={styles.vesselDataText}>{vessel.voyage_out}</Text>
+                <Text style={styles.vesselDataText}>{mVessel.voyage_out}</Text>
             </InputRow>
             <InputRow direction="row">
                 <Label direction="row" label="ETA" />
-                <Text style={styles.vesselDataText}>{dateFormat(vessel.eta, "d/m/Y H:i:s")}</Text>
+                <Text style={styles.vesselDataText}>{dateFormat(mVessel.eta, "d/m/Y H:i:s")}</Text>
             </InputRow>
             <InputRow direction="row">
                 <Label direction="row" label="ETB" />
-                <Text style={styles.vesselDataText}>{dateFormat(vessel.etb, "d/m/Y H:i:s")}</Text>
+                <Text style={styles.vesselDataText}>{dateFormat(mVessel.etb, "d/m/Y H:i:s")}</Text>
             </InputRow>
             <InputRow direction="row">
                 <Label direction="row" label="ETD" />
-                <Text style={styles.vesselDataText}>{dateFormat(vessel.etd, "d/m/Y H:i:s")}</Text>
+                <Text style={styles.vesselDataText}>{dateFormat(mVessel.etd, "d/m/Y H:i:s")}</Text>
             </InputRow>
         </View>
         <VesselSVG width={100} height={100} />
     </View>
 )
 
-const VesselList = () => (
+const VesselList = ({mVessels}) => (
     <FlatList 
-        data={DATA}
+        data={mVessels}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={<View style={{height: 20}}></View>}
         ListFooterComponent={<View style={{height: 10}}></View>}
         keyExtractor={item => item.id.toString()}
-        renderItem={({item}) => <VesselItem vessel={item} />}
+        renderItem={({item}) => <VesselItem mVessel={item} />}
     />
 )
 export default VesselList;
